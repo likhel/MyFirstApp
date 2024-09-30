@@ -10,14 +10,16 @@ const Filter = () => {
           <h3 className="text-2xl font-bold mb-4">Find a pet to adopt</h3>
           
           {/* Buttons for pet types */}
-          <div className="inline-flex space-x-2 mb-4">
-            <button className="bg-green-600 text-white px-6 py-2 rounded">Dog</button>
-            <button className="bg-white text-gray-800 border border-gray-300 px-6 py-2 rounded">Cat</button>
-            <button className="bg-white text-gray-800 border border-gray-300 px-6 py-2 rounded">Rabbit</button>
+          <div className="mb-4">
+            <div className="inline-flex space-x-2">
+              <button className="bg-green-600 text-white px-6 py-2 rounded">Dog</button>
+              <button className="bg-white text-gray-800 border border-gray-300 px-6 py-2 rounded">Cat</button>
+              <button className="bg-white text-gray-800 border border-gray-300 px-6 py-2 rounded">Rabbit</button>
+            </div>
           </div>
 
-          {/* Filter options */}
-          <div className="bg-white p-6 shadow-md rounded-md inline-block">
+          {/* Filter options with controlled width */}
+          <div className="bg-white p-6 shadow-md rounded-md mx-auto max-w-xl">
             <div className="flex space-x-4">
               
               {/* Breed selection */}
@@ -41,7 +43,7 @@ const Filter = () => {
 
               {/* Search button */}
               <div className="flex items-end">
-                <button className="bg-green-600 text-white px-6 py-2 rounded flex items-center">
+                <button className="bg-green-600 text-white px-6 py-2 rounded flex justify-start items-center w-40">
                   <FontAwesomeIcon icon={faSearchLocation} className="mr-2" />
                   Search dogs
                 </button>
@@ -56,3 +58,5 @@ const Filter = () => {
 };
 
 export default Filter;
+
+
