@@ -13,7 +13,7 @@ const Filter = () => {
           <div className="mb-4">
             <div className="inline-flex space-x-2">
               <button className="bg-green-600 text-white px-6 py-2 rounded">Dog</button>
-              <button className="bg-white text-gray-800 border border-gray-300 px-6 py-2 rounded">Cat</button>
+              <button className="bg-white text-gray-800 border border-gray-300 px-6 py-2 rounded ">Cat</button>
               <button className="bg-white text-gray-800 border border-gray-300 px-6 py-2 rounded">Rabbit</button>
             </div>
           </div>
@@ -43,7 +43,7 @@ const Filter = () => {
 
               {/* Search button */}
               <div className="flex items-end">
-                <button className="bg-green-600 text-white px-6 py-2 rounded flex justify-start items-center w-40">
+                <button className="bg-green-600 text-white px-6 py-2 rounded flex justify-start items-center w-48 hover:bg-white hover:text-green-600 transition duration-200 border-2 border-green-600 border-solid">
                   <FontAwesomeIcon icon={faSearchLocation} className="mr-2" />
                   Search dogs
                 </button>
