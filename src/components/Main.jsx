@@ -13,11 +13,11 @@ const Main = () => {
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center space-y-4">
-          <button className="bg-green-600 text-white text-xl px-8 py-4 rounded-full flex items-center space-x-2 transition-transform duration-300 transform hover:scale-105">
+          <button className="bg-emerald-600 text-white text-xl px-8 py-4 rounded-full flex items-center space-x-2 transition-all duration-300 hover:translate-x-4 hover:-translate-y-2 hover:bg-green-600">
             <FontAwesomeIcon icon={faSearch} />
             <span>I want to adopt a pet</span>
           </button>
-          <button className="bg-green-600 text-white text-xl px-8 py-4 rounded-full flex items-center space-x-2 transition-transform duration-300 transform hover:scale-105">
+          <button className="bg-emerald-600 text-white text-xl px-8 py-4 rounded-full flex items-center space-x-2 transition-all duration-300 hover:translate-x-4 hover:-translate-y-2 hover:bg-green-600">
             <FontAwesomeIcon icon={faHome} />
             <span>I want to rehome a pet</span>
           </button>
