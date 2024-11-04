@@ -1,6 +1,7 @@
 import React from 'react'
-import Main from '../components/Main'
-import Filter from '../components/Filter'
+import Main from '../../components/Main'
+import Filter from '../../components/Filter'
+
 
 const HomePage = () => {
   return (

@@ -14,7 +14,7 @@ const Header = () => {
         <nav>
           <ul className="flex space-x-6 text-gray-800">
             <li><Link to="/" className="hover:text-green-700">Home</Link></li>
-            <li><Link to="/find-a-pet" className="hover:text-green-700">Find a pet</Link></li>
+            <li><Link to="/adopt-a-pet" className="hover:text-green-700">Find a pet</Link></li>
             <li><Link to="/list-a-pet" className="hover:text-green-700">List a pet</Link></li>
             <li>
               <FlyoutLink href="/adopters" FlyoutContent={AdoptersContent}>
@@ -34,13 +34,13 @@ const Header = () => {
             <li><Link to="/list-a-pet" className="hover:text-green-700">About Us</Link></li>
           </ul>
         </nav>
-        <div className="flex space-x-4">
-          <button className="rounded-2xl border-2 border-dashed border-red-600 bg-white px-4 py-1 font-semibold uppercase text-red-600 transition-all duration-300 hover:translate-x-2 hover:translate-y-2 hover:rounded-md hover:shadow-custom-red active:translate-x-0 active:translate-y-0 active:rounded-2xl active:shadow-none">
-            <FontAwesomeIcon icon={faHeart} className="mr-2 fa-beat heart-icon" />
+        <div className="flex space-x-3">
+          <button className="rounded-xl border-1 border-solid border-red-600 bg-white px-4 py-1 font-semibold uppercase text-red-600 transition-all duration-300 hover:bg-red-600 hover:text-white active:rounded-xl ">
+            <FontAwesomeIcon icon={faHeart} className="mr-2 fa-beat heart-icon active:text-red-600 hover:text-white" />
             Donate
           </button>
-          <button className="rounded-2xl border-2 border-dashed border-blue-600 bg-white px-4 py-1 font-semibold uppercase text-blue-600 transition-all duration-300 hover:translate-x-2 hover:translate-y-2 hover:rounded-md hover:shadow-custom-blue active:translate-x-0 active:translate-y-0 active:rounded-2xl active:shadow-none">
-            <FontAwesomeIcon icon={faPerson} className="mr-2" />
+          <button className="rounded-xl border-1 border-solid border-blue-600 bg-white px-4 py-1 font-semibold uppercase text-blue-600 transition-all duration-300 hover:bg-blue-600 hover:text-white active:rounded-2xl">
+            <FontAwesomeIcon icon={faPerson} className="mr-2 active:text-red-600 hover:text-white" />
             Login/Register
           </button>
         </div>

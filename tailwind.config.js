@@ -20,6 +20,9 @@ export default {
         'custom-red': '3px 3px 0px red', // Customize as needed
         'custom-blue': '3px 3px 0px blue'
       },
+      borderWidth:{
+        '1': '1px'
+      }
     },
   },
   variants: {
