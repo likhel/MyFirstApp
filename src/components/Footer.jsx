@@ -6,7 +6,7 @@ import {faFacebook,faInstagram,faTwitter} from '@fortawesome/free-brands-svg-ico
 const Footer = () => {
   return (
       <>
-        <footer className="bg-gray-600 text-white py-8 px-4">
+        <footer className="bg-yellow-900 text-white py-12 px-4 opacity-60">
           <div className="container mx-auto grid grid-cols-1 px-5 md:grid-cols-4 gap-10">
             {/* About Us Section */}
             <div>

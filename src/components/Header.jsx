@@ -6,18 +6,18 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const Header = () => {
   return (
-    <header className="bg-slate-100 shadow-md sticky top-0 z-50">
+    <header className="bg-slate-100 shadow-md sticky top-0 z-50 py-6">
       <div className="container mx-auto flex justify-around items-center py-4">
         <div className="flex items-center">
-          <img src="images/paplogo.png" alt="Logo" className="h-24 mr-4" />
+          <img src="images/paplogo.png" alt="Logo" className="h-28 mr-4" />
         </div>
         <nav>
-          <ul className="flex space-x-6 text-gray-800">
+          <ul className="flex space-x-6 text-slate-600 text-base font-medium">
             <li><Link to="/" className="hover:text-green-700">Home</Link></li>
             <li><Link to="/adopt-a-pet" className="hover:text-green-700">Find a pet</Link></li>
             <li><Link to="/list-a-pet" className="hover:text-green-700">List a pet</Link></li>
-            <li>
-              <FlyoutLink href="/adopters" FlyoutContent={AdoptersContent}>
+            <li className="text-slate-600">
+              <FlyoutLink href="/adopters"  FlyoutContent={AdoptersContent}>
                 Adopters <FontAwesomeIcon icon={faChevronDown} className="ml-1 text-12px" />
               </FlyoutLink>
             </li>
