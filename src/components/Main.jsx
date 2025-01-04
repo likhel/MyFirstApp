@@ -44,7 +44,8 @@ const Main = () => {
               Adoption reduces the demand for illegal pet imports and abuse.
             </p>
           </div>
-          <div className="p-6 bg-white shadow-lg rounded-3xl hover:shadow-xl">
+          <div className="p-6 bg-white shadow-lg rounded-3xl
+           hover:shadow-xl">
             <FontAwesomeIcon icon={faHandshake} className="text-green-600 text-5xl mb-4" />
             <h3 className="text-xl font-bold mb-4">Responsible Rehoming</h3>
             <p className="text-gray-600">

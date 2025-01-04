@@ -6,6 +6,8 @@ import FindaPet from "./pages/UserFrontend/AdoptersEnd/FindaPet";
 import SignUp from "./pages/Auths/SignUp";
 import LoginPage from "./pages/Auths/LoginPage";
 import ListaPet from "./pages/UserFrontend/RehomersEnd/ListaPet";
+import SignUpAsRehomer from "./pages/Auths/SignUpAsRehomer";
+import ListaPetHousehold from "./pages/UserFrontend/RehomersEnd/ListaPetHousehold";
 
 const MyRoutes = () => {
   return (
@@ -17,6 +19,8 @@ const MyRoutes = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="adopt-a-pet" element={<FindaPet />} />
           <Route path="list-a-pet" element={<ListaPet />} />
+          <Route path="signupasregister" element={<SignUpAsRehomer />} />
+          <Route path="pethousehold" element={<ListaPetHousehold />} />
         </Route>
       </Routes>
     </Router>

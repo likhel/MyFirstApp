@@ -1,21 +1,49 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faHeart, faPerson } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faHeart, faPerson} from '@fortawesome/free-solid-svg-icons';
+import {faFacebook,faInstagram,faTwitter} from '@fortawesome/free-brands-svg-icons'
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Header = () => {
   return (
-    <header className="bg-slate-100 shadow-md sticky top-0 z-50 py-6">
+    <header className="relative bg-slate-100 shadow-md sticky top-0 z-50 py-6">
+      <div className="absolute top-4 right-11">
+            <ul className="flex space-x-4 text-rose-500 ">
+                <li><Link><FontAwesomeIcon icon={faFacebook} size="xl" className="transition-all duration-300 transform hover:translate-y-[-2.5px]" /></Link></li>
+                <li><Link><FontAwesomeIcon icon={faTwitter} size="xl" className="transition-all duration-300 transform hover:translate-y-[-2.5px]" /></Link></li>
+                <li><Link><FontAwesomeIcon icon={faInstagram} size="xl" className="transition-all duration-300 transform hover:translate-y-[-2.5px]" /></Link></li>
+            </ul>
+      </div>
       <div className="container mx-auto flex justify-around items-center py-4">
         <div className="flex items-center">
           <img src="images/paplogo.png" alt="Logo" className="h-28 mr-4" />
         </div>
         <nav>
-          <ul className="flex space-x-6 text-slate-600 text-base font-medium">
-            <li><Link to="/" className="hover:text-green-700">Home</Link></li>
-            <li><Link to="/adopt-a-pet" className="hover:text-green-700">Find a pet</Link></li>
-            <li><Link to="/list-a-pet" className="hover:text-green-700">List a pet</Link></li>
+          <ul className="flex space-x-6 text-slate-600 gap-2 text-base font-medium">
+            <li><Link to="/" className="relative hover:text-green-700 group">Home
+            <span
+              
+              className="absolute bottom-0 left-0 right-0 border-2 border-green-700 opacity-0 rounded-sm h-0.5 bg-green-700 transform scale-x-0 transition-transform duration-300 ease-out group-hover:opacity-100 group-hover:scale-x-100"
+
+            />
+            </Link></li>
+            <li><Link to="/adopt-a-pet" className="relative hover:text-green-700 group">Find a pet
+            <span
+              
+              className="absolute bottom-0 left-0 right-0 border-2 border-green-700 opacity-0 rounded-sm h-0.5 bg-green-700 transform scale-x-0 transition-transform duration-300 ease-out group-hover:opacity-100 group-hover:scale-x-100"
+
+            />
+            
+            </Link></li>
+            <li><Link to="/list-a-pet" className="relative hover:text-green-700 group">List a pet
+            <span
+              
+              className="absolute bottom-0 left-0 right-0 border-2 border-green-700 opacity-0 rounded-sm h-0.5 bg-green-700 transform scale-x-0 transition-transform duration-300 ease-out group-hover:opacity-100 group-hover:scale-x-100"
+
+            />
+            
+            </Link></li>
             <li className="text-slate-600">
               <FlyoutLink href="/adopters"  FlyoutContent={AdoptersContent}>
                 Adopters <FontAwesomeIcon icon={faChevronDown} className="ml-1 text-12px" />
@@ -39,10 +67,11 @@ const Header = () => {
             <FontAwesomeIcon icon={faHeart} className="mr-2 fa-beat heart-icon active:text-red-600 hover:text-white" />
             Donate
           </button>
-          <button className="rounded-xl border-1 border-solid border-blue-600 bg-white px-4 py-1 font-semibold uppercase text-blue-600 transition-all duration-300 hover:bg-blue-600 hover:text-white active:rounded-2xl">
-            <FontAwesomeIcon icon={faPerson} className="mr-2 active:text-red-600 hover:text-white" />
+          <button className="rounded-lg border border-blue-600 bg-blue-600 px-4 py-1 font-semibold uppercase text-white transition-all duration-300 transform hover:translate-y-[-2.5px] active:rounded-2xl">
+          <FontAwesomeIcon icon={faPerson} className="mr-2 active:text-red-600 hover:text-white" />
             Login/Register
           </button>
+
         </div>
       </div>
     </header>
@@ -59,14 +88,14 @@ const FlyoutLink = ({ children, href, FlyoutContent }) => {
       onMouseLeave={() => setOpen(false)}
       className="relative"
     >
-      <Link to={href} className="relative text-gray-800 hover:text-green-700">
+      <Link to={href} className="relative text-slate-600 hover:text-green-700">
         {children}
         {/* Underline effect */}
         <span
           style={{
             transform: open ? "scaleX(1)" : "scaleX(0)",
           }}
-          className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-700 transform scale-x-0 transition-transform duration-300 ease-out"
+          className="absolute bottom-0 left-0 right-0 border-2 border-green-700 rounded-sm h-0.5 bg-green-700 transform scale-x-0 transition-transform duration-300 ease-out"
         />
       </Link>
       <AnimatePresence>

@@ -194,8 +194,8 @@ const ListaPet = () => {
             {/* Submit Button */}
             <div className="text-center ">
               <Link
-                to = ""
-                className="bg-green-600 text-white font-semibold px-10 py-3 rounded-md shadow-md hover:bg-white hover:text-green-600 transition duration-200 border-2 border-green-600 border-solid"
+                to = "/signupasregister"
+                className="bg-green-600 text-white text-base font-bold px-8 py-2 rounded-md shadow-md hover:bg-white hover:text-green-600 transition duration-200 border-2 border-green-600 border-solid"
               >
                 Next
               </Link>

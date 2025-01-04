@@ -22,6 +22,9 @@ export default {
       },
       borderWidth:{
         '1': '1px'
+      },
+      height:{
+        '0.7':'2.5px'
       }
     },
   },
