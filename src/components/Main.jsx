@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faHome, faHeart, faPaw, faHandshake } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
 const Main = () => {
   return (
@@ -13,14 +14,14 @@ const Main = () => {
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center space-y-4">
-          <button className="bg-emerald-600 text-white text-xl px-8 py-4 rounded-full flex items-center space-x-2 transition-all duration-300 hover:translate-x-4 hover:-translate-y-2 hover:bg-green-600">
+          <Link to="/adopter-form"className="bg-emerald-600 text-white text-xl px-8 py-4 rounded-full flex items-center space-x-2 transition-all duration-300 hover:translate-x-4 hover:-translate-y-2 hover:bg-green-600">
             <FontAwesomeIcon icon={faSearch} />
             <span>I want to adopt a pet</span>
-          </button>
-          <button className="bg-emerald-600 text-white text-xl px-8 py-4 rounded-full flex items-center space-x-2 transition-all duration-300 hover:translate-x-4 hover:-translate-y-2 hover:bg-green-600">
+          </Link>
+          <Link to="/list-a-pet"className="bg-emerald-600 text-white text-xl px-8 py-4 rounded-full flex items-center space-x-2 transition-all duration-300 hover:translate-x-4 hover:-translate-y-2 hover:bg-green-600">
             <FontAwesomeIcon icon={faHome} />
             <span>I want to rehome a pet</span>
-          </button>
+          </Link>
         </div>
       </section>
 

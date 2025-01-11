@@ -63,14 +63,14 @@ const Header = () => {
           </ul>
         </nav>
         <div className="flex space-x-3">
-          <button className="rounded-xl border-1 border-solid border-red-600 bg-white px-4 py-1 font-semibold uppercase text-red-600 transition-all duration-300 hover:bg-red-600 hover:text-white active:rounded-xl ">
+          <Link to = "/donate-now" className="rounded-xl border-1 border-solid border-red-600 bg-white px-4 py-1 font-semibold uppercase text-red-600 transition-all duration-300 hover:bg-red-600 hover:text-white active:rounded-xl ">
             <FontAwesomeIcon icon={faHeart} className="mr-2 fa-beat heart-icon active:text-red-600 hover:text-white" />
             Donate
-          </button>
-          <button className="rounded-lg border border-blue-600 bg-blue-600 px-4 py-1 font-semibold uppercase text-white transition-all duration-300 transform hover:translate-y-[-2.5px] active:rounded-2xl">
+          </Link>
+          <Link to="/login" className="rounded-lg border border-blue-600 bg-blue-600 px-4 py-1 font-semibold uppercase text-white transition-all duration-300 transform hover:translate-y-[-2.5px] active:rounded-2xl">
           <FontAwesomeIcon icon={faPerson} className="mr-2 active:text-red-600 hover:text-white" />
             Login/Register
-          </button>
+          </Link>
 
         </div>
       </div>

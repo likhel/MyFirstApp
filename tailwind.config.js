@@ -25,7 +25,10 @@ export default {
       },
       height:{
         '0.7':'2.5px'
-      }
+      },
+      margin:{
+        '54': "218px"
+      },
     },
   },
   variants: {

@@ -1,46 +1,65 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { Link } from "react-router-dom";
 
 const ListaPet = () => {
   // Validation schema using Yup
   const validationSchema = Yup.object({
     petType: Yup.string()
-      .required('Pet type is required')
-      .min(2, 'Name must be at least 2 characters long'),
-    reproduction: Yup.string().required('Please select an option'),
+      .required("Pet type is required.")
+      .min(2, "Please select a valid pet type."),
+    reproduction: Yup.string().required("Please select an option."),
     reason: Yup.string()
-      .required('Reason for rehoming is required')
-      .min(10, 'Reason must be at least 10 characters long'),
+      .required("Reason for rehoming is required."),
+      // .min(10, "Reason must be at least 10 characters long."),
     time: Yup.string()
-      .required('Details about how long you can keep the pet are required')
-      .min(10, 'Details must be at least 10 characters long'),
-    
+      .required("Details about how long you can keep the pet are required."),
+      // .min(10, "Details must be at least 10 characters long."),
+    photos: Yup.array()
+      .min(4, "Please upload at least 4 photos.")
+      .test(
+        "fileType",
+        "Only image files are allowed.",
+        (value) =>
+          value &&
+          value.every((file) => ["image/jpeg", "image/png"].includes(file.type))
+      )
+      .test(
+        "fileSize",
+        "Each image must be smaller than 2MB.",
+        (value) =>
+          value && value.every((file) => file.size <= 2 * 1024 * 1024)
+      ),
   });
 
   // Initial Values
   const initialValues = {
-    petType: '',
-    reproduction: '',
-    reason: '',
-    time: ''
+    petType: "",
+    reproduction: "",
+    reason: "",
+    time: "",
+    photos: [],
   };
 
   // Handle form submission
   const handleSubmit = (values, { resetForm }) => {
-    console.log('Form Submitted:', values);
-    alert('Pet listed successfully!');
+    console.log("Form Submitted:", values);
+    alert("Pet listed successfully!");
     resetForm();
   };
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-8 px-4">
       {/* Page Title */}
-      
       <div className="bg-white rounded-3xl shadow-lg p-6 w-full max-w-5xl mb-8">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-1">Before You Start..</h2>
-        <p className='mb-6'>Please make sure you’ve read and agree to these points before you create a listing.</p>
+        <h2 className="text-3xl font-semibold text-gray-800 mb-1">
+          Before You Start..
+        </h2>
+        <p className="mb-6">
+          Please make sure you’ve read and agree to these points before you
+          create a listing.
+        </p>
         <ul className="list-disc pl-6 text-gray-700">
           <li className="mb-6 text-inherit">
             <span className='font-semibold text-gray-500'>You won’t get paid</span> for your pet but it is free to list them with our Charity.
@@ -65,6 +84,8 @@ const ListaPet = () => {
       </div>
 
 
+        {/* Points list */}
+  
 
       {/* Form Container */}
       <Formik
@@ -72,9 +93,9 @@ const ListaPet = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ setFieldValue }) => (
+        {({ setFieldValue, isValid, dirty }) => (
           <Form className="bg-lime-200 rounded-3xl shadow-lg p-8 w-full max-w-5xl">
-            
+            {/* Pet Type */}
             <div className="mb-6">
               <label htmlFor="petType" className="block text-gray-700 font-semibold mb-2">
                 Are you rehoming a dog, cat or other pet?
@@ -83,24 +104,21 @@ const ListaPet = () => {
                 as="select"
                 id="petType"
                 name="petType"
-                placeholder="Dog"
                 className="w-full border border-gray-300 rounded-md p-3 focus:ring focus:ring-blue-200 focus:border-blue-500"
               >
-
                 <option value="">Select an option</option>
                 <option value="dog">Dog</option>
                 <option value="cat">Cat</option>
                 <option value="rabbit">Rabbit</option>
-               </Field>
+              </Field>
               <ErrorMessage
                 name="petType"
                 component="div"
                 className="text-red-500 text-sm mt-1"
               />
             </div>
-            
 
-            {/* Species */}
+            {/* Reproduction */}
             <div className="mb-6">
               <label htmlFor="reproduction" className="block text-gray-700 font-semibold mb-2">
                 Is your pet spayed or neutered?
@@ -122,7 +140,7 @@ const ListaPet = () => {
               />
             </div>
 
-            {/* Age */}
+            {/* Reason */}
             <div className="mb-6">
               <label htmlFor="reason" className="block text-gray-700 font-semibold mb-2">
                 Why do you need to rehome your pet?
@@ -156,10 +174,7 @@ const ListaPet = () => {
               />
             </div>
 
-            
-             
-
-            {/* Description */}
+            {/* Time */}
             <div className="mb-12">
               <label htmlFor="time" className="block text-gray-700 font-semibold mb-2">
                 How long can you keep your pet while we find a new home?
@@ -191,15 +206,41 @@ const ListaPet = () => {
               />
             </div>
 
-            {/* Submit Button */}
-            <div className="text-center ">
-              <Link
-                to = "/signupasregister"
-                className="bg-green-600 text-white text-base font-bold px-8 py-2 rounded-md shadow-md hover:bg-white hover:text-green-600 transition duration-200 border-2 border-green-600 border-solid"
-              >
-                Next
-              </Link>
+            {/* Photos */}
+            <div className="mb-6">
+              <label htmlFor="photos" className="block text-gray-700 font-semibold mb-2">
+                Upload 4 good-quality photos of your pet:
+              </label>
+              <input
+                id="photos"
+                name="photos"
+                type="file"
+                multiple
+                accept="image/jpeg, image/png"
+                onChange={(event) => {
+                  const files = Array.from(event.target.files);
+                  setFieldValue("photos", files);
+                }}
+                className="w-full border border-gray-300 rounded-md p-3 focus:ring focus:ring-blue-200 focus:border-blue-500"
+              />
+              <ErrorMessage
+                name="photos"
+                component="div"
+                className="text-red-500 text-sm mt-1"
+              />
             </div>
+
+            {/* Next Link */}
+            {isValid && dirty && (
+              <div className="text-center">
+                <Link
+                  to="/signupasregister"
+                  className="bg-green-600 text-white text-base font-bold px-8 py-2 rounded-md shadow-md border-2 border-solid border-green-600"
+                >
+                  Next
+                </Link>
+              </div>
+            )}
           </Form>
         )}
       </Formik>
@@ -208,3 +249,4 @@ const ListaPet = () => {
 };
 
 export default ListaPet;
+
