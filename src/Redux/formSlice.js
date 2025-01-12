@@ -10,19 +10,24 @@ const formSlice = createSlice({
     petHealth: {},
     petStory: {},
     finalCheck: {},
+    rehomerId: null,
   },
   reducers: {
     updatePet: (state, action) => {
-      state.petHealth = action.payload;
+      state.pet = action.payload;
     },
+    updateRehomerId: (state, action) => {
+      state.rehomerId = action.payload; // Action to update rehomerId
+    },
+
     updatePetHousehold: (state, action) => {
-      state.petHealth = action.payload;
+      state.petHousehold = action.payload;
     },
     updateAboutPet: (state, action) => {
-      state.petHealth = action.payload;
+      state.aboutPet = action.payload;
     },
     updatePetType: (state, action) => {
-      state.petHealth = action.payload;
+      state.petType = action.payload;
     },
     updatePetHealth: (state, action) => {
       state.petHealth = action.payload;
@@ -41,10 +46,11 @@ const formSlice = createSlice({
       state.petHealth = {};
       state.petStory = {};
       state.finalCheck = {};
+      state.rehomerId = null;
     },
   },
 });
 
-export const { updatePet,updatePetHousehold,updateAboutPet,updatePetType,updatePetHealth, updatePetStory, updateFinalCheck, clearFormData } = formSlice.actions;
+export const { updatePet,updatePetHousehold,updateAboutPet,updatePetType,updatePetHealth, updatePetStory, updateFinalCheck,updateRehomerId, clearFormData } = formSlice.actions;
 export default formSlice.reducer;
 

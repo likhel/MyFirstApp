@@ -1,33 +1,45 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
+import { useDispatch, useSelector } from "react-redux";
+import { updatePetHousehold } from "../../../Redux/FormSlice";
+// import { updatePetHousehold } from '../features/formSlice';
 
 const ListaPetHousehold = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const petHousehold = useSelector((state) => state.form.pet);
+
+  // Validation schema using Yup
   const validationSchema = Yup.object({
     HouseholdActivity: Yup.string().required(
-      'Please select the typical household activity level'
+      "Please select the typical household activity level"
     ),
-    SinglePet: Yup.string().required('Please select an option'),
+    SinglePet: Yup.string().required("Please select an option"),
     PetEnvironment: Yup.string().required(
-      'Please select the environment your pet is used to'
+      "Please select the environment your pet is used to"
     ),
   });
 
+  // Initial Values
   const initialValues = {
-    HouseholdActivity: '',
-    SinglePet: '',
-    PetEnvironment: '',
+    HouseholdActivity: petHousehold.HouseholdActivity || "",
+    SinglePet: petHousehold.SinglePet || "",
+    PetEnvironment: petHousehold.PetEnvironment || "",
   };
 
+  // Handle form submission
   const handleSubmit = (values, { resetForm }) => {
-    console.log('Form Submitted:', values);
-    alert('Pet household details submitted successfully!');
+    dispatch(updatePetHousehold(values)); // Dispatch the values to Redux
+    alert("Pet household details submitted successfully!");
+    navigate("/aboutpet"); // Navigate to the next page using useNavigate
     resetForm();
   };
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-8 px-4">
+      {/* Form Container */}
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -128,27 +140,28 @@ const ListaPetHousehold = () => {
                 className="text-red-500 text-sm mt-1"
               />
             </div>
-            <div className="flex justify-between items-center">
-              <div>
-                <Link
-                   to='/signupasregister'
-                   
+
+            {/* Next Link */}
+            {isValid && dirty && (
+              <div className="flex justify-between items-center">
+                <div>
+                  <Link
+                    to="/signupasregister"
                     className="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded"
                   >
                     Back
-                </Link>
+                  </Link>
                 </div>
-              <div>
-                {isValid && dirty && (
-                  <Link
-                    to="/aboutpet"
+                <div>
+                  <button
+                    type="submit"
                     className="bg-green-600 text-white font-bold px-10 py-2 rounded-md shadow-md hover:bg-white hover:text-green-600 transition duration-200 border-2 border-green-600 border-solid"
                   >
                     Next
-                  </Link>
-                )}
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </Form>
         )}
       </Formik>

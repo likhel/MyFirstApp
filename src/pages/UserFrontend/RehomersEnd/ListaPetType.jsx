@@ -1,9 +1,17 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updatePetType } from "../../../Redux/FormSlice";
+// import { updatePetType } from '../features/formSlice';
 
 const ListaPetType = () => {
+  const dispatch = useDispatch(); // Redux dispatch
+  const navigate = useNavigate(); // Hook for navigation
+  const petType = useSelector((state) => state.form.pet); // Get pet state from Redux
+
+  // Validation schema using Yup
   const validationSchema = Yup.object({
     behaviour: Yup.string().required("Please select your pet’s behavior"),
     socializationIssues: Yup.string().required(
@@ -11,14 +19,17 @@ const ListaPetType = () => {
     ),
   });
 
+  // Initial Values
   const initialValues = {
-    behaviour: "",
-    socializationIssues: "",
+    behaviour: petType.behaviour || "",
+    socializationIssues: petType.socializationIssues || "",
   };
 
+  // Handle form submission
   const handleSubmit = (values, { resetForm }) => {
-    console.log("Form Submitted:", values);
+    dispatch(updatePetType(values)); // Dispatch the values to Redux
     alert("Pet type details submitted successfully!");
+    navigate("/pet-health"); // Navigate to the next page using useNavigate
     resetForm();
   };
 
@@ -30,7 +41,7 @@ const ListaPetType = () => {
         onSubmit={handleSubmit}
       >
         {({ isValid, dirty }) => (
-          <Form className="bg-lime-200 rounded-3xl shadow-lg mt-24 p-8 w-full max-w-5xl">
+          <Form className="bg-lime-200 rounded-3xl shadow-lg p-8 w-full max-w-5xl">
             {/* Pet Behavior */}
             <div className="mb-6">
               <label
@@ -52,13 +63,13 @@ const ListaPetType = () => {
                   Good with other dogs
                 </option>
                 <option value="Needs to be only PET in the home">
-                  Needs to be only PET in the home
+                  Needs to be the only PET in the home
                 </option>
                 <option value="Has lived with other dogs-it was fine">
-                  Has lived with other dogs-it was fine
+                  Has lived with other dogs - it was fine
                 </option>
                 <option value="Has lived with other dogs-it didn't go well">
-                  Has lived with other dogs-it didn't go well
+                  Has lived with other dogs - it didn't go well
                 </option>
                 <option value="is fairly relaxed">is fairly relaxed</option>
                 <option value="is active and lively">
@@ -146,12 +157,12 @@ const ListaPetType = () => {
               </div>
               <div className="text-center">
                 {isValid && dirty && (
-                  <Link
-                    to="/pet-health"
+                  <button
+                    type="submit"
                     className="bg-green-600 text-white font-bold px-10 py-2 rounded-md shadow-md hover:bg-white hover:text-green-600 transition duration-200 border-2 border-green-600 border-solid"
                   >
                     Next
-                  </Link>
+                  </button>
                 )}
               </div>
             </div>

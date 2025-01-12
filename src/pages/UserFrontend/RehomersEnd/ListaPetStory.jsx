@@ -1,16 +1,24 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updatePetStory } from "../../../Redux/FormSlice";
+// import { updatePetStory } from '../features/formSlice';
 
 const ListaPetStory = () => {
+  const dispatch = useDispatch(); // Redux dispatch
+  const navigate = useNavigate(); // Hook for navigation
+  const petStory = useSelector((state) => state.form.pet); // Get pet state from Redux
+
+  // Initial Values from Redux store
   const initialValues = {
-    personality: "",
-    likesToPlay: "",
-    foodAndTreats: "",
+    personality: petStory.personality || "",
+    likesToPlay: petStory.likesToPlay || "",
+    foodAndTreats: petStory.foodAndTreats || "",
   };
 
+  // Validation schema using Yup
   const validationSchema = Yup.object({
     personality: Yup.string()
       .required("Please describe your pet's personality.")
@@ -23,9 +31,11 @@ const ListaPetStory = () => {
       .min(10, "Description should be at least 10 characters."),
   });
 
+  // Handle form submission
   const handleSubmit = (values) => {
-    console.log("Form Data:", values);
+    dispatch(updatePetStory(values)); // Dispatch updated values to Redux
     alert("Form submitted successfully!");
+    navigate("/final-check"); // Navigate to the next page
   };
 
   return (
@@ -36,7 +46,7 @@ const ListaPetStory = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {() => (
+        {({ isValid, dirty }) => (
           <Form className="space-y-4">
             {/* Personality Field */}
             <div>
@@ -101,7 +111,7 @@ const ListaPetStory = () => {
               />
             </div>
 
-            {/* Submit Button */}
+            {/* Back and Next Navigation */}
             <div className="flex justify-between items-center">
               <div>
                 <Link
@@ -113,12 +123,12 @@ const ListaPetStory = () => {
               </div>
               <div>
                 {isValid && dirty && (
-                  <Link
-                    to="/final-check"
+                  <button
+                    type="submit"
                     className="bg-green-600 text-white font-bold px-10 py-2 rounded-md shadow-md hover:bg-white hover:text-green-600 transition duration-200 border-2 border-green-600 border-solid"
                   >
                     Next
-                  </Link>
+                  </button>
                 )}
               </div>
             </div>

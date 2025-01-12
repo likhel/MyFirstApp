@@ -29,16 +29,15 @@ const Header = () => {
             />
             </Link></li>
             <li><Link to="/adopt-a-pet" className="relative hover:text-green-700 group">Find a pet
+
             <span
-              
               className="absolute bottom-0 left-0 right-0 border-2 border-green-700 opacity-0 rounded-sm h-0.5 bg-green-700 transform scale-x-0 transition-transform duration-300 ease-out group-hover:opacity-100 group-hover:scale-x-100"
 
             />
             
             </Link></li>
-            <li><Link to="/list-a-pet" className="relative hover:text-green-700 group">List a pet
+            <li><Link to="/signupasregister" className="relative hover:text-green-700 group">List a pet
             <span
-              
               className="absolute bottom-0 left-0 right-0 border-2 border-green-700 opacity-0 rounded-sm h-0.5 bg-green-700 transform scale-x-0 transition-transform duration-300 ease-out group-hover:opacity-100 group-hover:scale-x-100"
 
             />
